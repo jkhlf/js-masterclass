@@ -111,3 +111,23 @@ var Xd = [1, 2, 3];
 var Yd = [4, 5, 6];
 var Zd = doubleArray(Xd, Yd);
 console.log(Zd); 
+
+
+////////////// OR using .repeat //////////////////
+function staircase(n) {
+    for ( var line = 1; line <= n; line += 1){
+        var space = '';
+        var hash = '';
+    for (var s = 0; s < n - line; s +=1) {
+        space += ' ';
+    }
+    for (var h = 0; h < line; h += 1) {
+        hash += '#';
+    }
+    console.log(space + hash);
+    } 
+} 
+
+
+ 
+
