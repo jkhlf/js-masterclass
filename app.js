@@ -1,7 +1,7 @@
 
 function simpleArraySum(ar) {
     var sum = 0;
-    for (index = 0; index < ar.length; index++) {
+    for (var index = 0; index < ar.length; index++) {
         sum += ar[index];
     }
     return sum;
@@ -14,7 +14,7 @@ function simpleArraySum(ar) {
 function compareTriplets(a, b) {
     var alice = 0
     var bob = 0
-    for (index = 0; index < a.length; index += 1) {
+    for (var index = 0; index < a.length; index += 1) {
         if (a[index] > b[index]) {
             alice++;
         } else if (a[index] = b[index]) {
@@ -128,6 +128,25 @@ function staircase(n) {
     } 
 } 
 
-
  
-
+////////////// OR using .reduce Math.min & Math.max ///////////
+function miniMaxSum(arr) {
+    var max = arr[0];
+    var min = arr[0];
+    var sum = 0;
+    
+    for (var i = 0; i < arr.length; i ++) {
+        if(max < arr[i]) {
+            max = arr[i]
+        } 
+        if (min > arr[i]){
+            min= arr[i]
+        }
+        sum += arr[i]
+    }
+    let maxSum = sum - min;
+    let minSum = sum - max;
+    
+    console.log(minSum + " " + maxSum);
+    
+}
