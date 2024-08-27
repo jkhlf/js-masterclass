@@ -150,3 +150,37 @@ function miniMaxSum(arr) {
     console.log(minSum + " " + maxSum);
     
 }
+
+////////////////////////////////////////////////////////
+
+function birthdayCakeCandles(candles) {
+    const tallest = Math.max(...candles);
+    const countTallest = candles.filter(candle => candle === tallest).length;
+    return countTallest;
+
+
+}
+
+////////////////////////////////////////////////////////
+
+function timeConversion(s) {
+    let amPm = s.charAt(8);
+    let hour = parseInt(s.substring(0, 2));
+    let normalHour = '';
+
+    if (amPm === 'A') {
+        if (hour === 12) {
+            normalHour = '00';
+        } else {
+            normalHour = s.substring(0, 2);
+        }
+    } else { 
+        if (hour === 12) {
+            normalHour = s.substring(0, 2);
+        } else {
+            normalHour = (hour + 12).toString();
+        }
+    }
+
+    return normalHour + s.substring(2, 8);
+}
