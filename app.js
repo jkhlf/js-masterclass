@@ -184,3 +184,25 @@ function timeConversion(s) {
 
     return normalHour + s.substring(2, 8);
 }
+
+
+////////////////////////////////////////////////////////
+
+function gradingStudents(grades) {
+    const roundedGrades = [];
+
+    for (let i = 0; i < grades.length; i++) {
+        let grade = grades[i];
+        
+        if (grade >= 38) {
+            const difference = grade % 5;
+            if (difference >= 3) {
+                grade += (5 - difference);
+            }
+        }
+
+        roundedGrades.push(grade);
+    }
+
+    return roundedGrades;
+}
