@@ -231,3 +231,17 @@ function countApplesAndOranges(s, t, a, b, apples, oranges) {
     console.log(appleCount);
     console.log(orangeCount);
 }
+
+////////////////////////////////////////////////////////
+
+function kangaroo(x1, v1, x2, v2) {
+    if (v1 == v2) {
+        return x1 == x2 ? "YES" : "NO";
+    }
+    
+    if ((x2 - x1) % (v1 - v2) == 0 && (x2 - x1) / (v1 - v2) >= 0) {
+        return "YES";
+    } else {
+        return "NO";
+    }
+}
