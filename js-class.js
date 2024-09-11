@@ -79,6 +79,7 @@ function montarTabela(){
 
 
 ///Exerc
+//João Khalaf & Marcus Bomfim
 
 function obterNumeros() {
     let obj = { numeros: [1, 3, 7, -1, 0, 4, 9], qt: 7 };
