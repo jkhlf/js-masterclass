@@ -1,17 +1,123 @@
-<!DOCTYPE html>
+<html lang="pt-BR">
+
 <head>
-    <script src="js-class"></script>
-    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercícios de JavaScript e DOM (Otimizados)</title>
+
 </head>
+
 <body>
+    <h1>Simulado Prova</h1>
 
-    <header>Javascript é mt ruim</header>
+    <h2>Exerc 1</h2>
+
+    <div>Este parágrafo tem uma <p>div filha direta</p> que deve ficar rosa.</div>
+    <div>Este também tem uma <p>div filha direta</p> que deve ficar rosa.</div>
+    <div>Este tem uma <p>div filha indireta</p> que não deve mudar.</div>
+
+    <button onclick="colorDivsInP()">Colorir p filhas de DIV</button>
 
 
+    <h2>Exerc 2</h2>
+    <div id="resultado"></div>
 
-    <button onclick="montarTabela()">Leia</button>   
+    <h2>Exerc 3</h2>
+    <form>
+        Número: <input type="number" id="numero">
+    </form>
+    <button onclick="rolar()">Gerar Lista</button>
 
-    <button onclick="divSomar()">Leia</button>   
+    <div id="lista"></div>
 
+
+    <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.Kc9qRA46ICaMEDhcEhloYwHaEK%26pid%3DApi&f=1&ipt=373f39d88be423e774322f88fd7ec3cdafc50e303bad7cb30a01e642e5f7aff5&ipo=images" alt="Imagem 1">
+    <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.FvW2WEugVCHq0sIW_drOcQHaEo%26pid%3DApi&f=1&ipt=b8c2e8f8c39d11800f317bfd96c87948b6ce84f47b120e17120d5cc848070738&ipo=images" alt="Imagem 2">
+    <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.kfD3m6YKMrhgxeoJZqMKHwHaEK%26pid%3DApi&f=1&ipt=6b7208231a181252680d3daa3703b5c6f2e05e2c172c5dfaf81d76783abe7f13&ipo=images" alt="Imagem 3">
+    
+    <!-- Botão para acionar a função nomearImgs -->
+    <button onclick="nomearImgs()">Nomear Imagens</button>
+
+
+    <script>
+        //exerc 1
+        function colorDivsInP() {
+            const divs = document.querySelectorAll('div > p');
+            // divs.forEach(p => {
+            //     p.style.color = 'pink';
+            // });
+
+            for (let i = 0; i < divs.length; i++) {
+                    divs[i].style.color = 'pink'
+            }
+        }
+
+        //exerc 2
+        function processarObjetos(vetor) {
+            const resultadoDiv = document.getElementById('resultado');
+            
+            const nomesParaMostrar = vetor.filter(obj => obj.acao === 'MOSTRAR');
+            const nomesIgnorados = vetor.filter(obj => obj.acao === 'IGNORAR').length;
+            const totalNomes = vetor.length;
+            
+            resultadoDiv.innerHTML = '';
+            
+            nomesParaMostrar.forEach(obj => {
+                const p = document.createElement('p');
+                p.textContent = obj.nome;
+                resultadoDiv.appendChild(p);
+            });
+            
+            const divIgnorados = document.createElement('div');
+            divIgnorados.textContent = `Nomes ignorados: ${nomesIgnorados}`;
+            resultadoDiv.appendChild(divIgnorados);
+            
+            const pTotal = document.createElement('p');
+            pTotal.textContent = `Total de nomes: ${totalNomes}`;
+            resultadoDiv.appendChild(pTotal);
+        }
+        
+        const vetorDeObjetos = [
+            { nome: "Nome0", acao: "MOSTRAR" },
+            { nome: "Nome1", acao: "IGNORAR" },
+            { nome: "Nome2", acao: "MOSTRAR" },
+            { nome: "Nome3", acao: "IGNORAR" },
+            { nome: "Nome4", acao: "MOSTRAR" }
+        ];
+        
+        processarObjetos(vetorDeObjetos);
+
+        //exerc 3
+        function rolar() {
+            const n = parseInt(document.getElementById('numero').value);
+            
+            const listaDiv = document.getElementById('lista');
+
+            const ul = document.createElement('ul');
+
+            for (let i = 0; i < n; i++) {
+                const li = document.createElement('li');
+                li.innerText = i; 
+                if (i % 2 === 0) {
+                    li.style.color = 'blue';  
+                } else {
+                    li.style.color = 'red';   
+                }
+
+                ul.appendChild(li);
+            }
+
+            listaDiv.appendChild(ul);
+        }
+
+        //exerc 4
+        function nomearImgs() {
+            const imagens = document.querySelectorAll('img');
+
+            for (let i =0; i < imagens.length; i++){
+                imagens[i].src = `image${i}.png `
+            }
+        }
+    </script>
 </body>
 </html>
