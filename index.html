@@ -1,20 +1,202 @@
-<!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Exercícios de JavaScript e DOM (Otimizados)</title>
+
 </head>
+
 <body>
-    
+    <div>
+        <h1 class="aqui">EXERCICIO 1</h1> <!-- h1 filho direto da div -->
+        <h2> Adjacente </h2> <!-- h2 adjacente de h1-->
+    </div>
 
-    <h1>Só pra rodar o Node</h1>
+    <div>
+        <h1 class="aqui">EXERCICIO 1</h1>
+        <h2> Adjacente </h2>
+    </div>
+
+    <div>
+        <h1 class="aqui">EXERCICIO 1</h1>
+    </div> <!--esse não funciona pois h2 e h1 não são irmaos adjacentes-->
+    <h2> Adjacente </h2>
+    <button onclick="remover()"> Adicionar </button> <!--botão que chama a função adicionar() ao ser clicado -->
 
 
+    <!-- EXERCICIO 2 - NÃO PRECISOU DE HTML-->
+    <!-- EXERCICIO 3 -->
+    <p> Exercicio 3 </p>
+    <a href="https://fatecrl.edu.br/">FatecRl</a>
+    <button onclick="colorir()"> Mudar cor </button>]
 
+    <!-- EXERCICIO -->
+    <button onclick="montarTabelaProdutos()"> Criar tabela de produtos</button>
+    <button onclick="somaEletronicos(produtos)"> soma </button>
 
+    <h1>Simulado Prova</h1>
+    <h2>Exerc 1</h2>
+    <div>Este parágrafo tem uma <p>div filha direta</p> que deve ficar rosa.</div>
+    <div>Este também tem uma <p>div filha direta</p> que deve ficar rosa.</div>
+    <div>Este tem uma <p>div filha indireta</p> que não deve mudar.</div>
+    <button onclick="colorDivsInP()">Colorir p filhas de DIV</button>
 
+    <h2>Exerc 2</h2>
+    <button onclick="doisA()"> Exerc dois </button>
+    <h2>Exerc 3</h2>
+    <form>
+        Número: <input type="number" id="numero">
+    </form>
+    <button onclick="rolar()">Gerar Lista</button>
 
-    <script src="app.js"></script>
+    <!-- Botão para acionar a função nomearImgs -->
+    <button onclick="nomearImgs()">Nomear Imagens</button>
+
+    <script>
+
+        function soma(obj) {
+            let soma = 0;
+            for (let i = 0; i < obj.length; i++) {
+                if (obj[i].tipo === "eletronico") {
+                    soma = soma + obj[i].valor;
+                }
+            }
+            return soma;
+        }
+        console.log(soma(obterObjetoProdutos().produtos))
+        function montarTabelaProdutos() {
+            let objProdutos = obterObjetoProdutos(); 
+            let table = document.createElement("table");
+            let thead = document.createElement("thead");
+            let tbody = document.createElement("tbody");
+            let trhead = document.createElement("tr");
+            let colunas = ['Nome', 'Valor', 'Tipo'];
+            colunas.forEach(coluna => {
+                let th = document.createElement("th");
+                th.innerHTML = coluna;
+                trhead.appendChild(th);
+            });
+            thead.appendChild(trhead);
+            objProdutos.produtos.forEach(produto => {
+                let trprod = document.createElement("tr");
+                let tdnome = document.createElement("td");
+                let tdvalor = document.createElement("td");
+                let tdtipo = document.createElement("td");
+                tdnome.innerHTML = produto.nome;
+                tdvalor.innerHTML = produto.valor;
+                tdtipo.innerHTML = produto.tipo;
+                trprod.appendChild(tdnome);
+                trprod.appendChild(tdvalor);
+                trprod.appendChild(tdtipo);
+                tbody.appendChild(trprod);
+            });
+            table.appendChild(thead);
+            table.appendChild(tbody);
+            document.body.appendChild(table);
+        }
+        function obterObjetoProdutos() {
+            let obj =  {
+                produtos: [
+                    { nome: 'Celular', valor: 1200, tipo: 'eletronico' },
+                    { nome: 'Geladeira', valor: 3000, tipo: 'eletronico' },
+                    { nome: 'Mesa', valor: 500, tipo: 'mobilia' },
+                    { nome: 'Notebook', valor: 2500, tipo: 'eletronico' }
+                ]
+            };
+            return obj;
+        }
+
+        function remover() {
+            let h2 = document.querySelectorAll("div>h1.aqui + h2");
+            for (let i = 0; i < h2.length; i++) {
+                h2[i].classList.add("remover")
+            }
+        }
+
+        function palavra() {
+            const vogais = "AEIOUaeiou"; // Definimos as vogais (maiúsculas e minúsculas)
+            const x = "Teu tio obeso";   // A string de entrada
+            const resultado = x.split('') // Transformamos a string em um array de caracteres
+                .filter(letra => vogais.includes(letra)) // Mantemos apenas as vogais
+                .join('');
+
+            console.log(resultado);
+        }
+        palavra();
+
+        function vogais(palavra) {
+            let vogais = "aiouAIOU"
+            let vogs = ""
+            for (let i = 0; i < palavra.length; i++) {
+                if (vogais.includes(palavra[i])) {
+                    vogs += palavra[i];
+                }
+            }
+            return vogs
+        }
+        console.log(vogais("Teu Tio"));
+
+        function colorir() {
+            let p = document.querySelector("p");
+            let a = document.querySelector("a");
+            p.style.backgroundColor = "blue";
+            a.style.backgroundColor = "yellow";
+        }
+
+        //exerc 1
+        function colorDivsInP() {
+            const divs = document.querySelectorAll('div > p');
+            for (let i = 0; i < divs.length; i++) {
+                divs[i].style.color = 'pink'
+            }
+        }
+
+        //exerc 2
+        function obterJson() {
+            let obj = [{ nome: "Teste0", acao: "MOSTRAR" }, { nome: "Teste1", acao: "IGNORAR" }, { nome: "Teste2", acao: "MOSTRAR" }, { nome: "Teste3", acao: "MOSTRAR" }, { nome: "Teste4", acao: "IGNORAR" },];
+            return obj;
+        }
+        function doisA() {
+            let obj = obterJson();
+            let ctMostrar = 0;
+            for (let i = 0; i < obj.length; i++) {
+                if (obj[i].acao === "MOSTRAR") {
+                    let p = document.createElement("p");
+                    p.innerHTML = obj[i].nome;
+                    document.body.appendChild(p);
+                    ctMostrar++;
+                }
+            }
+            let div = document.createElement("div");
+            div.innerHTML = ctMostrar;
+            document.body.appendChild(div);
+            let div2 = document.createElement("div");
+            div2.innerHTML = obj.length - ctMostrar;
+            document.body.appendChild(div2);
+        }
+        //exerc 3
+        function rolar() {
+            let n = document.querySelector("#numero").value;
+            let ul = document.createElement("ul");
+            for (let i = 0; i < n; i++) {
+                let li = document.createElement("li");
+                li.innerHTML = i;
+                li.style.color = i % 2 == 0 ? "blue" : "red";
+                ul.appendChild(li);
+            }
+            document.body.appendChild(ul);
+        }
+        //exerc 4
+        function nomearImgs() {
+            let n = 10;
+            for (let i = 0; i < n; i++) {
+                let img = document.createElement("img");
+                img.src = "image" + i + ".png";
+                document.body.appendChild(img);
+            }
+        }
+    </script>
 </body>
+
 </html>
