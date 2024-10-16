@@ -1,0 +1,100 @@
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercícios de JavaScript </title>
+
+</head>
+
+<body>
+    <div>
+        <h1 class="aqui">EXERCICIO 1</h1> <!-- h1 filho direto da div -->
+        <h2> Adjacente </h2> <!-- h2 adjacente de h1-->
+    </div>
+
+    <div>
+        <h1 class="aqui">EXERCICIO 1</h1>
+        <h2> Adjacente </h2>
+    </div>
+
+    <div>
+        <h1 class="aqui">EXERCICIO 1</h1>
+    </div> <!--esse não funciona pois h2 e h1 não são irmaos adjacentes-->
+    <h2> Adjacente </h2>
+
+
+    <!-- EXERCICIO 3 -->
+    <p> Exercicio 3 </p>
+    <a href="https://fatecrl.edu.br/">FatecRl</a>
+    <button onclick="colorir()"> Mudar cor </button>]
+
+    <h2>Exerc 2</h2>
+    <button onclick="doisA()"> Exerc dois </button>
+    <h2>Exerc 3</h2>
+    <form>
+        Número: <input type="number" id="numero">
+    </form>
+    <button onclick="rolar()">Gerar Lista</button>
+
+    <!-- Botão para acionar a função nomearImgs -->
+    <button onclick="nomearImgs()">Nomear Imagens</button>
+
+    <script>
+
+        //exerc 1
+        function colorDivsInP() {
+            const divs = document.querySelectorAll('div > p');
+            for (let i = 0; i < divs.length; i++) {
+                divs[i].style.color = 'pink'
+            }
+        }
+
+        //exerc 2
+        function obterJson() {
+            let obj = [{ nome: "Teste0", acao: "MOSTRAR" }, { nome: "Teste1", acao: "IGNORAR" }, { nome: "Teste2", acao: "MOSTRAR" }, { nome: "Teste3", acao: "MOSTRAR" }, { nome: "Teste4", acao: "IGNORAR" },];
+            return obj;
+        }
+        function doisA() {
+            let obj = obterJson();
+            let ctMostrar = 0;
+            for (let i = 0; i < obj.length; i++) {
+                if (obj[i].acao === "MOSTRAR") {
+                    let p = document.createElement("p");
+                    p.innerHTML = obj[i].nome;
+                    document.body.appendChild(p);
+                    ctMostrar++;
+                }
+            }
+            let div = document.createElement("div");
+            div.innerHTML = ctMostrar;
+            document.body.appendChild(div);
+            let div2 = document.createElement("div");
+            div2.innerHTML = obj.length - ctMostrar;
+            document.body.appendChild(div2);
+        }
+        //exerc 3
+        function rolar() {
+            let n = document.querySelector("#numero").value;
+            let ul = document.createElement("ul");
+            for (let i = 0; i < n; i++) {
+                let li = document.createElement("li");
+                li.innerHTML = i;
+                li.style.color = i % 2 == 0 ? "blue" : "red";
+                ul.appendChild(li);
+            }
+            document.body.appendChild(ul);
+        }
+        //exerc 4
+        function nomearImgs() {
+            let n = 10;
+            for (let i = 0; i < n; i++) {
+                let img = document.createElement("img");
+                img.src = "image" + i + ".png";
+                document.body.appendChild(img);
+            }
+        }
+    </script>
+</body>
+
+</html>
