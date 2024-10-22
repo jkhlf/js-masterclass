@@ -72,4 +72,26 @@ function att() {
 
 att();
 
+function attC() {
+    const d = document.querySelectorAll("div");
+
+    d.forEach(item => {
+        item.classList = "nao lembro"
+    });
+}
+
+attC();
+
+
+
+function link() {
+    let a = document.querySelectorAll("a");
+
+    a.forEach(item => {
+        item.href = "https://www.random.com";
+    });
+}
+
+link();
+
 
